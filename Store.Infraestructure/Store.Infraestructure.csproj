@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -7,13 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Store.Aplication\Store.Aplication.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="DataBase\EntityFramework\Entities\" />
-      <Folder Include="DataBase\EntityFramework\Repositories\" />
-      <Folder Include="IOC\" />
+      <ProjectReference Include="..\Store.Aplication\Store.Application.csproj" />
     </ItemGroup>
 
 </Project>

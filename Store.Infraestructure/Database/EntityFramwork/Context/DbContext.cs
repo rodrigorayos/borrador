@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Store.Domain.Responses
+namespace Store.Infraestructure.Database.EntityFramwork.Context
 {
-    internal class HttpStatusMessages
+    internal class DbContext
     {
     }
 }
