@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hy3UvwHboGw=",
+  "dgSpecHash": "NcSy/wRZyLg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\rodri_fgb\\Desktop\\SUINT.Hub.Store.Api\\Store.Infrastructure\\Store.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\rodri_fgb\\Desktop\\PruebasXD\\borrador\\Store.Infrastructure\\Store.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodri_fgb\\.nuget\\packages\\awssdk.core\\3.7.400.20\\awssdk.core.3.7.400.20.nupkg.sha512",
     "C:\\Users\\rodri_fgb\\.nuget\\packages\\awssdk.s3\\3.7.402.11\\awssdk.s3.3.7.402.11.nupkg.sha512",
