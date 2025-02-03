@@ -1,10 +1,10 @@
-﻿namespace Store.Domain.Repositories.Common;
-
-public interface IGenericRepository<TEntity> where TEntity : class
+﻿namespace Store.Domain.Repositories.Common
 {
-    Task<IEnumerable<T>> GetAllAsync<T>() where T : class;
-    Task<T> GetByIdAsync<T>(int id) where T : class;
-    Task<T> AddAsync<T>(T entity) where T : class;
-    Task<T> UpdateAsync<T>(T entity) where T : class;
-    Task<T> DeleteAsync<T>(int id) where T : class;
+    public interface IGenericRepository<TEntity> where TEntity : class
+    {
+        Task<TEntity> CreateAsync(TEntity entity); // Create
+        Task<TEntity?> GetByIdAsync(int id); // Read (by ID)
+        Task<bool> DeleteAsync(int id); // Delete
+        Task<TEntity> UpdateAsync(TEntity entity); // Update
+    }
 }
