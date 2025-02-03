@@ -4,7 +4,7 @@ using Store.Infrastructure.Database.EntityFramework.Common;
 
 namespace Store.Infrastructure.Database.EntityFramework.Entities.Authorization;
 
-[Table("Authorizationssssss", Schema = "CTR")]
+[Table("AuthorizationP", Schema = "CTR")]
 public class AuthorizationEntity : BaseEntity, IIdentifiable
 {
     [Key]

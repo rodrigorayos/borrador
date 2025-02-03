@@ -12,8 +12,8 @@ using Store.Infrastructure.Database.EntityFramework.Context;
 namespace Store.Infrastructure.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250203221704_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20250203225321_septimo")]
+    partial class septimo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,7 @@ namespace Store.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authorization", "CTR");
+                    b.ToTable("AuthorizationP", "CTR");
                 });
 
             modelBuilder.Entity("Store.Infrastructure.Database.EntityFramework.Entities.Store.StoreEntity", b =>
@@ -103,7 +103,7 @@ namespace Store.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Store", "CTR");
+                    b.ToTable("StoreP", "CTR");
                 });
 #pragma warning restore 612, 618
         }

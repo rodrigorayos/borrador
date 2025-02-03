@@ -4,7 +4,7 @@ using Store.Infrastructure.Database.EntityFramework.Common;
 
 namespace Store.Infrastructure.Database.EntityFramework.Entities.Store;
 
-[Table("Store", Schema = "CTR")]
+[Table("StoreP", Schema = "CTR")]
 public class StoreEntity : BaseEntity, IIdentifiable
 {
     [Key]

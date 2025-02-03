@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Store.Infrastructure.Database.EntityFramework.Context;
 
@@ -12,10 +11,9 @@ using Store.Infrastructure.Database.EntityFramework.Context;
 namespace Store.Infrastructure.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250203222331_ThirdMigration")]
-    partial class ThirdMigration
+    partial class StoreDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +59,7 @@ namespace Store.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authorizationssssss", "CTR");
+                    b.ToTable("AuthorizationP", "CTR");
                 });
 
             modelBuilder.Entity("Store.Infrastructure.Database.EntityFramework.Entities.Store.StoreEntity", b =>
@@ -103,7 +101,7 @@ namespace Store.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Store", "CTR");
+                    b.ToTable("StoreP", "CTR");
                 });
 #pragma warning restore 612, 618
         }
