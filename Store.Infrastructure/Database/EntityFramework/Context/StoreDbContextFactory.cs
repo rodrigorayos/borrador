@@ -16,7 +16,7 @@ namespace Store.Infrastructure.Database.EntityFramework.Context
                 .AddJsonFile("appsettings.Development.json", optional: true)
                 .Build();
 
-            string? connectionString = configuration.GetConnectionString("remoteConnection");
+            string? connectionString = configuration.GetConnectionString("DefaultConnection");
 
             if (string.IsNullOrEmpty(connectionString))
             {

@@ -10,17 +10,17 @@ namespace Store.Application.Services.Store
     public class StoreService
     {
         private readonly IValidator<StoreModel> _validator;
-        private readonly IStoreRepository<StoreDto> _storeRepository;
+        private readonly IStoreRepository _storeRepository;
         
         public StoreService(
             IValidator<StoreModel> validator,
-            IStoreRepository<StoreDto> storeRepository)
+            IStoreRepository storeRepository)
         {
             _validator = validator;
             _storeRepository = storeRepository;
         }
         
-        public async Task<Result<List<StoreDto>>> CreateStore(StoreQueryDto createDto)
+        public async Task<Result<List<StoreDto>>> CreateStore(StoreQueryDto createDto)  
         {
             var storeModel = new StoreModel(createDto.Name, createDto.Ubication, createDto.Capacity);
 
@@ -37,7 +37,7 @@ namespace Store.Application.Services.Store
             var createdStore = await _storeRepository.CreateAsync(storeDto);
 
             return Result<List<StoreDto>>.Success(
-                new List<StoreDto> { createdStore }, // Devuelve la lista
+                new List<StoreDto> { createdStore },
                 HttpStatusCode.Created,
                 "Almacén creado con éxito."
             );
@@ -48,9 +48,10 @@ namespace Store.Application.Services.Store
             var stores = await _storeRepository.GetAllAsync();
 
             return Result<List<StoreDto>>.Success(
-                stores ?? new List<StoreDto>(), // 👈 Si es null, se devuelve []
+                stores ?? new List<StoreDto>(),
                 HttpStatusCode.OK,
-                stores != null && stores.Any() ? "Almacenes obtenidos con éxito." : "No se encontraron almacenes."
+                stores != null && stores.Any() ? "Almacenes obtenidos con éxito." : 
+                    "No se encontraron almacenes."
             );
         }
         
@@ -86,9 +87,10 @@ namespace Store.Application.Services.Store
             var stores = await _storeRepository.SearchByNameAsync(searchTerm);
 
             return Result<List<StoreDto>>.Success(
-                stores?.ToList() ?? new List<StoreDto>(), // 👈 Si es null, se devuelve []
+                stores?.ToList() ?? new List<StoreDto>(),
                 HttpStatusCode.OK,
-                stores != null && stores.Any() ? $"Se encontraron {stores.Count()} almacenes." : "No se encontraron almacenes con el nombre especificado."
+                stores != null && stores.Any() ? $"Se encontraron {stores.Count()} almacenes." : 
+                    "No se encontraron almacenes con el nombre especificado."
             );
         }
 
@@ -112,7 +114,7 @@ namespace Store.Application.Services.Store
             var updatedStore = await _storeRepository.UpdateAsync(storeDto);
 
             return Result<List<StoreDto>>.Success(
-                new List<StoreDto> { updatedStore }, // Devuelve una lista
+                new List<StoreDto> { updatedStore },
                 HttpStatusCode.OK,
                 "Almacén actualizado con éxito."
             );
@@ -123,8 +125,10 @@ namespace Store.Application.Services.Store
             var result = await _storeRepository.DeleteAsync(id);
 
             return result
-                ? Result<List<bool>>.Success(new List<bool> { true }, HttpStatusCode.OK, "Almacén eliminado con éxito.")
-                : Result<List<bool>>.Failure(new List<string> { "No se encontró el almacén especificado." }, HttpStatusCode.NotFound);
+                ? Result<List<bool>>.Success(new List<bool> { true }, HttpStatusCode.OK,
+                    "Almacén eliminado con éxito.")
+                : Result<List<bool>>.Failure(new List<string> { "No se encontró el almacén especificado." }, 
+                    HttpStatusCode.NotFound);
         }
     }
 }

@@ -3,8 +3,8 @@ using Store.Domain.Repositories.Common;
 
 namespace Store.Domain.Repositories.Store;
 
-public interface IStoreRepository<TEntity> : IGenericRepository<StoreDto>
+public interface IStoreRepository : IGenericRepository<StoreDto>
 {
-    Task<List<TEntity>> GetAllAsync(); // Read (all)
-    Task<IEnumerable<StoreDto>> SearchByNameAsync(string searchTerm); 
+    Task<List<StoreDto>> GetAllAsync(); 
+    Task<IEnumerable<StoreDto>> SearchByNameAsync(string searchTerm);
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Store.Infrastructure.Database.EntityFramework.Entities;
+using Store.Infrastructure.Database.EntityFramework.Common;
+using Store.Infrastructure.Database.EntityFramework.Entities.Authorization;
 using Store.Infrastructure.Database.EntityFramework.Entities.Store;
 
 namespace Store.Infrastructure.Database.EntityFramework.Context
@@ -7,6 +8,7 @@ namespace Store.Infrastructure.Database.EntityFramework.Context
     public class StoreDbContext : DbContext
     {
         public DbSet<StoreEntity> Stores { get; set; }
+        public DbSet<AuthorizationEntity> Authorizations { get; set; }
         
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options) {}
         public override int SaveChanges()
@@ -43,22 +45,20 @@ namespace Store.Infrastructure.Database.EntityFramework.Context
                 }
             }
         }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Ejemplo de configuración de relaciones (ajusta según tus necesidades)
+            
             modelBuilder.Entity<StoreEntity>()
-                .HasKey(s => s.Id); // Define la clave primaria
-
-            // Agrega más configuraciones de relaciones aquí si es necesario
+                .HasKey(s => s.Id);
+            modelBuilder.Entity<AuthorizationEntity>()
+                .HasKey(s => s.Id);
+            
         }
-
-        // Método para obtener el ID del usuario actual (simulado)
+        
         private int GetCurrentUserId()
         {
-            // Aquí puedes implementar la lógica para obtener el ID del usuario actual
-            // Por ahora, devolvemos un valor simulado
             return 123;
         }
     }

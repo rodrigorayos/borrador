@@ -8,7 +8,7 @@ using Store.Infrastructure.Database.EntityFramework.Repositories.Common;
 
 namespace Store.Infrastructure.Database.EntityFramework.Repositories.Store
 {
-    public class StoreRepository : GenericRepository<StoreEntity>, IStoreRepository<StoreEntity>
+    public class StoreRepository : GenericRepository<StoreEntity>, IStoreRepository
     {
         private readonly StoreDbContext _context;
 
@@ -21,7 +21,7 @@ namespace Store.Infrastructure.Database.EntityFramework.Repositories.Store
         public async Task<List<StoreDto>> GetAllAsync()
         {
             var entities = await _context.Stores.ToListAsync();
-            return entities.Select(s => s.ToStoreDto()).ToList(); // Convertimos la lista de entidades a DTOs
+            return entities.Select(s => s.ToStoreDto()).ToList();
         }
 
         // ✅ Crear una nueva tienda
