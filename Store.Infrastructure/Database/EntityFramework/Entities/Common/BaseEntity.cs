@@ -1,4 +1,4 @@
-﻿namespace Store.Infrastructure.Database.EntityFramework.Common;
+﻿namespace Store.Infrastructure.Database.EntityFramework.Entities.Common;
 
 public class BaseEntity
 {

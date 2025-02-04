@@ -1,8 +1,8 @@
-﻿using Store.Domain.Models.Authorization;
-using Store.Domain.Dtos.Authorization;
-using Store.Infrastructure.Database.EntityFramework.Entities.Authorization;
+﻿using Store.Domain.Dtos.Store;
+using Store.Domain.Models.Store;
+using Store.Infrastructure.Database.EntityFramework.Entities.Store;
 
-namespace Store.Infrastructure.Database.EntityFramework.Extensions.Authorization;
+namespace Store.Infrastructure.Database.EntityFramework.Extensions.Store;
 
 public static class AuthorizationExtension
 {

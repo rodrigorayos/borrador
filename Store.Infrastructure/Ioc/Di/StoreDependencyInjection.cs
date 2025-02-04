@@ -8,13 +8,10 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Store.Application.Services.Authorization;
 using Store.Application.Services.Store;
 using Store.Application.Validators.Authorization;
 using Store.Application.Validators.Store;
-using Store.Domain.Models.Authorization;
-using Store.Domain.Repositories.Authorization;
-using Store.Infrastructure.Database.EntityFramework.Entities.Authorization;
+using Store.Domain.Dtos.Store;
 using Store.Infrastructure.Database.EntityFramework.Entities.Store;
 using Store.Infrastructure.Database.EntityFramework.Repositories.Authorization;
 
@@ -25,7 +22,7 @@ namespace Store.Infrastructure.Ioc.Di
         public static IServiceCollection RegisterDataBase(this IServiceCollection collection, 
             IConfiguration configuration)
         {
-            string connectionString = configuration["ConnectionStrings:remoteConnection"];
+            string connectionString = configuration["ConnectionStrings:DefaultConnection"];
             if (string.IsNullOrEmpty(connectionString))
             {
                 throw new ArgumentNullException(nameof(connectionString), 
@@ -53,7 +50,8 @@ namespace Store.Infrastructure.Ioc.Di
             collection.AddTransient<IAuthorizationRepository, AuthorizationRepository>();
             /*--------------------------------------------------------------------------*/
             collection.AddTransient<IValidator<StoreModel>, StoreValidation>();
-            collection.AddTransient < IValidator<AuthorizationModel>, AuthorizationValidation>();
+            collection.AddTransient<IValidator<AuthorizationQueryDto>, AuthorizationValidation>();
+
 
             return collection;
         }

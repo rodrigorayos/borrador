@@ -1,6 +1,6 @@
 ﻿using Store.Domain.Models.Common;
 
-namespace Store.Domain.Models.Authorization;
+namespace Store.Domain.Models.Store;
 
 public class AuthorizationModel : BaseModel
 {

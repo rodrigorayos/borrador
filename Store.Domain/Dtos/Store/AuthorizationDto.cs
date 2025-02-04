@@ -1,4 +1,4 @@
-﻿namespace Store.Domain.Dtos.Authorization;
+﻿namespace Store.Domain.Dtos.Store;
 
 public record AuthorizationDto
 (

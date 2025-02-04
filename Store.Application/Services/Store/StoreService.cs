@@ -20,7 +20,7 @@ namespace Store.Application.Services.Store
             _storeRepository = storeRepository;
         }
         
-        public async Task<Result<List<StoreDto>>> CreateStore(StoreQueryDto createDto)  
+        public async Task<Result<List<StoreDto>>> CreateStore(StoreQueryDto createDto)
         {
             var storeModel = new StoreModel(createDto.Name, createDto.Ubication, createDto.Capacity);
 
@@ -37,7 +37,7 @@ namespace Store.Application.Services.Store
             var createdStore = await _storeRepository.CreateAsync(storeDto);
 
             return Result<List<StoreDto>>.Success(
-                new List<StoreDto> { createdStore },
+                new List<StoreDto> { createdStore }, // Devuelve la lista
                 HttpStatusCode.Created,
                 "Almacén creado con éxito."
             );
@@ -48,10 +48,9 @@ namespace Store.Application.Services.Store
             var stores = await _storeRepository.GetAllAsync();
 
             return Result<List<StoreDto>>.Success(
-                stores ?? new List<StoreDto>(),
+                stores ?? new List<StoreDto>(), // 👈 Si es null, se devuelve []
                 HttpStatusCode.OK,
-                stores != null && stores.Any() ? "Almacenes obtenidos con éxito." : 
-                    "No se encontraron almacenes."
+                stores != null && stores.Any() ? "Almacenes obtenidos con éxito." : "No se encontraron almacenes."
             );
         }
         
@@ -87,7 +86,7 @@ namespace Store.Application.Services.Store
             var stores = await _storeRepository.SearchByNameAsync(searchTerm);
 
             return Result<List<StoreDto>>.Success(
-                stores?.ToList() ?? new List<StoreDto>(),
+                stores?.ToList() ?? new List<StoreDto>(), // 👈 Si es null, se devuelve []
                 HttpStatusCode.OK,
                 stores != null && stores.Any() ? $"Se encontraron {stores.Count()} almacenes." : 
                     "No se encontraron almacenes con el nombre especificado."
@@ -96,6 +95,15 @@ namespace Store.Application.Services.Store
 
         public async Task<Result<List<StoreDto>>> UpdateAsync(int id, StoreQueryDto updateDto)
         {
+            var existingStore = await _storeRepository.GetByIdAsync(id);
+            if (existingStore == null)
+            {
+                return Result<List<StoreDto>>.Failure(
+                    new List<string> { $"No se encontró un almacén con el ID {id}." },
+                    HttpStatusCode.NotFound
+                );
+            }
+
             var storeModel = new StoreModel(updateDto.Name, updateDto.Ubication, updateDto.Capacity)
             {
                 Id = id
@@ -111,19 +119,29 @@ namespace Store.Application.Services.Store
             }
 
             var storeDto = new StoreDto(id, updateDto.Name, updateDto.Ubication, updateDto.Capacity);
-            var updatedStore = await _storeRepository.UpdateAsync(storeDto);
-
-            return Result<List<StoreDto>>.Success(
-                new List<StoreDto> { updatedStore },
-                HttpStatusCode.OK,
-                "Almacén actualizado con éxito."
-            );
+    
+            try
+            {
+                var updatedStore = await _storeRepository.UpdateAsync(storeDto);
+                return Result<List<StoreDto>>.Success(
+                    new List<StoreDto> { updatedStore },
+                    HttpStatusCode.OK,
+                    "Almacén actualizado con éxito."
+                );
+            }
+            catch (Exception ex)
+            {
+                return Result<List<StoreDto>>.Failure(
+                    new List<string> { $"Error al actualizar el almacén: {ex.Message}" },
+                    HttpStatusCode.InternalServerError
+                );
+            }
         }
         
         public async Task<Result<List<bool>>> DeleteAsync(int id)
         {
             var result = await _storeRepository.DeleteAsync(id);
-
+    
             return result
                 ? Result<List<bool>>.Success(new List<bool> { true }, HttpStatusCode.OK,
                     "Almacén eliminado con éxito.")

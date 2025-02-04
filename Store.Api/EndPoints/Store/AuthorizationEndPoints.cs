@@ -1,6 +1,4 @@
-﻿using Store.Application.Services.Authorization;
-using Store.Application.Services.Store;
-using Store.Domain.Dtos.Authorization;
+﻿using Store.Application.Services.Store;
 using Store.Domain.Dtos.Store;
 
 namespace Store.Api.EndPoints.Store;

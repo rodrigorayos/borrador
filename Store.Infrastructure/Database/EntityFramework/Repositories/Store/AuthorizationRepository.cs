@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Store.Domain.Dtos.Authorization;
-using Store.Domain.Repositories.Authorization;
+using Store.Domain.Dtos.Store;
+using Store.Domain.Repositories.Store;
 using Store.Infrastructure.Database.EntityFramework.Context;
-using Store.Infrastructure.Database.EntityFramework.Entities.Authorization;
-using Store.Infrastructure.Database.EntityFramework.Extensions.Authorization;
+using Store.Infrastructure.Database.EntityFramework.Entities.Store;
+using Store.Infrastructure.Database.EntityFramework.Extensions.Store;
 using Store.Infrastructure.Database.EntityFramework.Repositories.Common;
 
 namespace Store.Infrastructure.Database.EntityFramework.Repositories.Authorization

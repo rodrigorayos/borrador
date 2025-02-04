@@ -1,24 +1,17 @@
 ﻿using FluentValidation;
-using Store.Domain.Models.Authorization;
+using Store.Domain.Dtos.Store;
 
-namespace Store.Application.Validators.Authorization;
-
-public class AuthorizationValidation : AbstractValidator<AuthorizationModel>
+namespace Store.Application.Validators.Authorization
 {
-    public AuthorizationValidation()
+    public class AuthorizationValidation : AbstractValidator<AuthorizationQueryDto>
     {
-        // Validación para la propiedad 'Date'
-        RuleFor(x => x.Date)
-            .NotEmpty().WithMessage("La fecha no puede estar vacía.")
-            .LessThanOrEqualTo(DateTime.Now).WithMessage("La fecha no puede ser futura.");
+        public AuthorizationValidation()
+        {
+            RuleFor(x => x.Date)
+                .NotEmpty().WithMessage("La fecha no puede estar vacía.");
 
-        // Validación para la propiedad 'State'
-        RuleFor(x => x.State)
-            .NotNull().WithMessage("El estado no puede ser nulo.");
-
-        // Validación para la propiedad 'Description'
-        RuleFor(x => x.Description)
-            .NotEmpty().WithMessage("La descripción no puede estar vacía.")
-            .MaximumLength(500).WithMessage("La descripción no puede exceder los 500 caracteres.");
+            RuleFor(x => x.Description)
+                .MaximumLength(300).WithMessage("La descripción no puede superar los 300 caracteres.");
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Store.Infrastructure.Database.EntityFramework.Common;
-using Store.Infrastructure.Database.EntityFramework.Entities.Authorization;
+using Store.Infrastructure.Database.EntityFramework.Entities.Common;
 using Store.Infrastructure.Database.EntityFramework.Entities.Store;
 
 namespace Store.Infrastructure.Database.EntityFramework.Context
@@ -51,8 +50,10 @@ namespace Store.Infrastructure.Database.EntityFramework.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<StoreEntity>().HasKey(xS => xS.Id);
-            modelBuilder.Entity<AuthorizationEntity>().HasKey(xA => xA.Id);
+            modelBuilder.Entity<StoreEntity>()
+                .HasKey(xS => xS.Id);
+            modelBuilder.Entity<AuthorizationEntity>()
+                .HasKey(xA => xA.Id);
         }
 
 
