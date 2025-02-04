@@ -1,13 +1,15 @@
 ﻿namespace Store.Domain.Dtos.Authorization;
 
-public record AuthorizationDto(
+public record AuthorizationDto
+(
     int Id,
     DateTime Date,
     bool State,
-    string? Description
+    string Description
 );
-public record AuthorizationQueryDto(
+public record AuthorizationQueryDto
+(
     DateTime Date,
     bool State,
-    string? Description
+    string Description
 );

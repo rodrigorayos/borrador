@@ -1,6 +1,7 @@
 ﻿namespace Store.Domain.Dtos.Store;
 
-public record StoreDto(
+public record StoreDto
+(
     int Id, 
     string Name, 
     string Ubication, 

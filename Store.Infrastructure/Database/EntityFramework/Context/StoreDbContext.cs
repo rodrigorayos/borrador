@@ -9,8 +9,9 @@ namespace Store.Infrastructure.Database.EntityFramework.Context
     {
         public DbSet<StoreEntity> Stores { get; set; }
         public DbSet<AuthorizationEntity> Authorizations { get; set; }
-        
+
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options) {}
+
         public override int SaveChanges()
         {
             UpdateAuditFields();
@@ -22,7 +23,7 @@ namespace Store.Infrastructure.Database.EntityFramework.Context
             UpdateAuditFields();
             return base.SaveChangesAsync(cancellationToken);
         }
-        
+
         private void UpdateAuditFields()
         {
             foreach (var entry in ChangeTracker.Entries<BaseEntity>())
@@ -45,21 +46,19 @@ namespace Store.Infrastructure.Database.EntityFramework.Context
                 }
             }
         }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-            modelBuilder.Entity<StoreEntity>()
-                .HasKey(s => s.Id);
-            modelBuilder.Entity<AuthorizationEntity>()
-                .HasKey(s => s.Id);
-            
+
+            modelBuilder.Entity<StoreEntity>().HasKey(xS => xS.Id);
+            modelBuilder.Entity<AuthorizationEntity>().HasKey(xA => xA.Id);
         }
-        
+
+
         private int GetCurrentUserId()
         {
-            return 123;
+            return 123; // Simulación de un usuario autenticado
         }
     }
 }

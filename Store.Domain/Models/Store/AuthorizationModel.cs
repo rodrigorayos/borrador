@@ -4,9 +4,9 @@ namespace Store.Domain.Models.Authorization;
 
 public class AuthorizationModel : BaseModel
 {
-    public DateTime Date { get; set; }
-    public bool State { get; set; }
-    public string Description { get; set; }
+    public DateTime Date { get; private set; }
+    public bool State { get; private set; }
+    public string Description { get; private set; }
 
     public AuthorizationModel(DateTime date, bool state, string description)
     {
